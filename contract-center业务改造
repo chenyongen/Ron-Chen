@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://dubbo.apache.org/schema/dubbo
+    http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.ContractMapper" ref="contractMapperDubboApi">
+        <dubbo:method name="selectByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--todo 优化该接口适配dubbo路由的定义-->
+        <dubbo:method name="selectExternalContractIdsByCreateDateBetweenStartAndEnd">
+        </dubbo:method>
+        <dubbo:method name="selectTagsByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--todo 优化该接口适配dubbo路由的定义-->
+        <dubbo:method name="selectCount">
+        </dubbo:method>
+        <dubbo:method name="selectByExternalContractId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--todo 优化该接口适配dubbo路由的定义-->
+        <dubbo:method name="selectOne">
+        </dubbo:method>
+        <!--todo 优化该接口适配dubbo路由的定义-->
+        <dubbo:method name="selectList">
+        </dubbo:method>
+        <!--todo 优化该接口适配dubbo路由的定义-->
+        <dubbo:method name="selectPage">
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.RecipientMapper" ref="recipientMapperDubboApi">
+        <dubbo:method name="selectByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.supports.contract.ICenterContractClient" ref="centerContractClient">
+        <dubbo:method name="getCenterContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!-- todo check dubbo string 类型是否支持-->
+        <dubbo:method name="getCenterContractByExternalContractId">
+        </dubbo:method>
+        <!-- todo check 调用场景为啥用两个参数查询，第一个参数是否一定存在-->
+        <dubbo:method name="getCenterContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getTagsOfContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="ifContractHasBeenArchived">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-1_"/>
+        </dubbo:method>
+        <dubbo:method name="getContractSendType">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="existByExternalContractIdAndClientId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getCenterContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.IContractCorrelationAPI" ref="contractCorrelationDubboAPI">
+        <dubbo:method name="add">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.enterpriseId"/>
+        </dubbo:method>
+        <dubbo:method name="deleteByCorrelator">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="revoke">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-1_"/>
+        </dubbo:method>
+        <dubbo:method name="batchAdd">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-3_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.IContractSearchDubboAPI" ref="contractSearchDubboAPI">
+        <dubbo:method name="existContract">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.enterpriseId"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.ISAASContractSyncDubboAPI" ref="contractSyncDubboAPI" version = "1.2">
+        <dubbo:method name="syncFinishTime">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="sync">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="rollback">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="repairContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!-- todo check哪里调用了，需要改造或移除-->
+        <dubbo:method name="rollbackErrorData">
+        </dubbo:method>
+        <!-- todo check哪里调用了, 需要改造或移除-->
+        <dubbo:method name="repairExistedContracts">
+        </dubbo:method>
+        <dubbo:method name="checkContractSyncInformation">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.ISyncOuterContractDubboAPI" ref="syncOuterContractDubboAPI" version = "1.2">
+        <dubbo:method name="syncOuterImportContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="syncOuterImportContractFirstTime">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.contractId"/>
+        </dubbo:method>
+        <dubbo:method name="syncOuterImportContractsFirstTime">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.-0_.contractId"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.IUserDubboAPI" ref="userDubboAPI">
+        <dubbo:method name="enableContractManageAndMigrateForManagerSystem">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-1_"/>
+        </dubbo:method>
+        <dubbo:method name="disableContractManageAndMigrateForManagerSystem">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-1_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.IFieldDetailDubboService" ref="fieldDetailDubboService">
+        <dubbo:method name="syncContractTypeFields">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.supports.IEsEventClient" ref="esEventClient">
+        <dubbo:method name="publishRecipientsModifiedEvent">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="publishContractRelatedEntitiesChangedEvent">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!-- todo check contractIds来源是否一定都是同一个云上的，如果是则可配置，否则需要改造 -->
+        <dubbo:method name="publishContractRelevantEntitiesChangedEventBatch">
+        </dubbo:method>
+        <!-- todo check contractIds来源是否一定都是同一个云上的，如果是则可配置，否则需要改造 -->
+        <dubbo:method name="publishContractRelevantEntitiesChangedEventBatch">
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.ICorrelateAPI" ref="correlateDubboAPI" version = "1.0">
+        <dubbo:method name="checkCorrelate">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-2_"/>
+        </dubbo:method>
+        <dubbo:method name="doCorrelate">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.dubbomapper.IContractDubboMapperService" ref="contractDubboMapperService">
+        <dubbo:method name="selectById">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="selectOne">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.folder.domain.acl.ISendEventClient" ref="sendEventClient">
+        <dubbo:method name="publishAddContractEvent">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.folder.domain.acl.IContractClient" ref="contractClient">
+        <dubbo:method name="getContractInfo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.contract.domain.acl.ISaasContractClient" ref="saasContractClient">
+        <dubbo:method name="getAndPackageSAASContract">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getBusinessProxiedSignEntId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getBusinessProxiedSignerEntId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--todo 需要改造，无法使用merge进行处理 -->
+        <dubbo:method name="queryContractTypeName">
+        </dubbo:method>
+        <dubbo:method name="calcuOptions">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="calculatePersonOptions">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getComposedSignatureAndSealLabels">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="getContractHybridConf">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="ifDisplayDataScopePersonSignerDataOnly">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-2_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.contract.domain.contract.IContractRepo" ref="ContractContractRepo">
+        <!--目前只有bearing调用该方法，其余的方法暂不提供支持 -->
+        <!-- 记得优化该repo interface,不需要暴露不必要的方法 -->
+        <dubbo:method name="findSaaSContractBaseInfoByExternalContractId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.contract.domain.recipient.IRecipientRepo" ref="recipientRepo">
+        <!--目前只有bearing调用该方法，其余的方法暂不提供支持 -->
+        <!-- 记得优化该repo interface,不需要暴露不必要的方法 -->
+        <dubbo:method name="findRecipientSignersByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.core.contract.domain.detail.IDetailRepo" ref="detailRepo">
+        <dubbo:method name="findContractBizDetailsByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="findSaasContractBizFields">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="findSaasContractBizFields">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.ContractAlertConfigMapper" ref="contractAlertConfigMapperDubboApi">
+        <dubbo:method name="selectByContractNoAndAlertType">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="selectById">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="deleteById">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!-- todo check使用集合中第一个参数的配置是否合适(大概率是可以的)-->
+        <dubbo:method name="deleteBatchIds">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.-0_"/>
+        </dubbo:method>
+        <dubbo:method name="insert">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.refContractNo"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.ContractAlertTaskMapper" ref="contractAlertTaskMapperDubboApi">
+        <dubbo:method name="insert">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.id"/>
+        </dubbo:method>
+        <dubbo:method name="findByConfigId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.ContractCorrelationMapper" ref="contractCorrelationMapperDubboApi">
+        <dubbo:method name="selectByEntIdAndCorrelatorAndCorrelatee">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--个人用户的关联合同的查询路由到默认云-->
+        <dubbo:method name="selectByUserIdAndCorrelatorAndCorrelatee">
+        </dubbo:method>
+        <dubbo:method name="countByEntIdAndCorrelatorAndDeleted">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--个人用户的关联合同的查询路由到默认云-->
+        <dubbo:method name="countByUserIdAndCorrelatorAndDeleted">
+        </dubbo:method>
+        <dubbo:method name="selectByEntIdAndCorrelator">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <!--个人用户的关联合同的查询路由到默认云-->
+        <dubbo:method name="selectByUserIdAndCorrelator">
+        </dubbo:method>
+
+        <!--todo 该表的id不具有带有regionId信息的数据，需要后续业务测试去check是否被client调用到-->
+        <!--<dubbo:method name="updateById">
+        </dubbo:method>
+        <dubbo:method name="selectById">
+        </dubbo:method>
+        <dubbo:method name="deleteById">
+        </dubbo:method>-->
+
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.DocumentMapper" ref="documentMapperDubboApi">
+        <dubbo:method name="selectById">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="updateById">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_.id"/>
+        </dubbo:method>
+        <dubbo:method name="selectByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="selectByContractNoAndDocId">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+
+
+    <dubbo:service interface="cn.bestsign.delta.contract.center.adapter.infrastructure.persistent.mapper.FieldDetailMapper" ref="fieldDetailMapperDubboApi">
+        <dubbo:method name="selectByContractNo">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="selectContractTypeFieldsByEntId">
+            <dubbo:parameter key="bestsignCloudType" value="0"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+        <dubbo:method name="selectCountByContractNoAndName">
+            <dubbo:parameter key="bestsignCloudType" value="1"/>
+            <dubbo:parameter key="bestsignCloudId" value="-0_"/>
+        </dubbo:method>
+    </dubbo:service>
+</beans>

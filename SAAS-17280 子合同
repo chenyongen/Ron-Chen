@@ -1,0 +1,110 @@
+AC1 子合同表头和父合同保持一致
+//given
+
+多文档合同a由合同1和合同2组成；合同1的类型是劳动合同，合同2的类型是保密协议
+
+//when
+类型是保密协议	列表页查看多文档合同a
+
+//then
+子合同的表头与多文档的表头是一致的；
+
+合同a的合同类型为空；默认收起子合同，展开后合同1为劳动合同，合同2为保密协议
+
+合同类型换成其他字段也是同理
+
+
+AC2 是包含子合同的 则自动展开
+//given
+	多文档合同a由合同1和合同2组成；合同1的类型是劳动合同，合同2的类型是保密协议
+//when
+ 搜索劳动合同
+
+//then
+
+搜索结果中出现合同a且自动展开子合同。合同a的合同类型为空；展开后合同1为劳动合同，合同2为保密协议
+
+合同类型换成其他字段也是同理。
+
+
+AC3 当子合同一个完成 另一个未完成时 签署状态置空
+
+//given
+	多文档合同a由合同1和合同2组成，合同1由A和B签署，合同2由A和C签署
+//when
+A签署了合同1和合同2；B签署了合同1；C未读未签署合同2。
+
+列表页查看多文档合同a
+
+//then
+合同a的签署状态为空；展开后合同1为已完成，合同2为“未读未签（1）
+
+
+AC4 未读未签数 取决未读未签签署人个数
+
+// given
+多文档合同a由合同1和合同2组成，合同1由A和B签署，合同2由A、C、D签署
+//when
+A签署了合同1和合同2；B签署了合同1；C和D未读未签署合同2。
+
+列表页查看多文档合同a
+
+//then
+合同a的签署状态为“未读未签（3）”；展开后合同1为“未读未签（1）”，合同2为“未读未签（2）”
+
+
+
+合同状态都是为签署中的，则需要分开显示已读未签和未读未签的细节
+
+
+
+
+子合同基本信息
+子合同详情信息
+  -[子合同]签署人信息组装
+  -[子合同]文档信息组装
+  -[子合同]内部操作日志信息组装
+  -[子合同]领域对象到前端对象转化
+
+
+
+
+内部操作日志  维度还是以父合同？
+
+
+
+子合同是认为是一个独立的合同 还是仍然是一个文档
+
+如果延用现在的文档方式 那么详情的组装 就需要去构建签署人 操作日志
+ 合同标签？？ 现在支持在子合同上吗
+
+
+contractBaseInfo.document
+ signers
+
+ sender
+
+ subContractDetails ->
+18768125277  123456
+
+admin
+Bestsign2021
+
+
+
+抄送人
+内部编号
+合同分类
+
+
+
+
+
+
+
+{"claimStatus":true,"contractPayer":false,"definedInTemplate":false,"devAccountIds":[],"ifProxyClaimer":false,"inputEnterpriseName":"","inputUserName":"尚尚签","mustReadBeforeSign":false,"needNotice":true,"newAttachmentRequired":false,"noticeInEnglish":false,"proxyClaimerAccounts":[],"templateRoleId":2770304332602545153,"viewedContract":true,"viewedLetter":false}
+
+{"inputEnterpriseName":"孙永强221100000001456","inputUserName":"谭伟烽","needNotice":true,"newAttachmentRequired":false,"noticeInEnglish":false,"viewedLetter":false}
+
+{"contractPayer":false,"definedInTemplate":true,"devAccountIds":[],"ifProxyClaimer":false,"inputEnterpriseName":"孙永强221100000001456","inputUserName":"谭伟烽","mustReadBeforeSign":false,"needNotice":true,"newAttachmentRequired":false,"noticeInEnglish":false,"proxyClaimerAccounts":[],"templateRoleId":2770304332929700866,"viewedLetter":false}
+ x-authenticated-userid:{"empId":"2428193981079795720","userId":"2272327918275267593","chosenEntId":"2246102699454002180"}

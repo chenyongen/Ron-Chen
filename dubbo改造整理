@@ -1,0 +1,58 @@
+生产
+boss
+basic
+template
+
+delta-aggregation-ent
+delta-ent-srv
+delta-contract-center
+
+delta-contract  f-SAAS-17541-back
+delta-contract-center
+boss
+
+
+
+mvn -f "pom.xml" versions:set -DoldVersion=4.71.7-RELEASE -DnewVersion=4.71.8-RELEASE -DprocessAllModules=true -DallowSnapshots=true -DgenerateBackupPoms=false
+*改造
+  - cn.bestsign.delta.ms.signflow.service.IContractService#fixContractData
+    在ent-srv中调到 属于后门修复接口
+
+  - cn.bestsign.delta.ms.signflow.service.IContractService#reSyncWithGivenContractIds
+       boss后台有调用的逻辑
+       center ent-srv template 有调用
+
+  - cn.bestsign.delta.ms.signflow.service.IContractService#searchContractWithBizFieldIgnore
+    在ent-srv中调到
+
+  - cn.bestsign.delta.ms.signflow.service.IContractService#generateContractId
+    在template中调用到
+
+干掉
+1. cn/bestsign/delta/ms/signflow/service/IContractEventService.java#getContractEventsInRange
+调用的在boss 实际没用到这个方法   干掉
+
+2. cn.bestsign.delta.ms.signflow.service.IContractService#queryCompletedHybridCloudContract
+ center ent-srv template 无调用
+
+3.cn.bestsign.delta.ms.signflow.service.IContractService#createContract
+ center ent-srv template 无调用
+
+4.cn.bestsign.delta.ms.signflow.service.IContractService#deleteContract
+ center ent-srv template 无调用
+
+5.cn.bestsign.delta.ms.signflow.service.IContractService#needToXiufuTemp
+ center ent-srv template 无调用
+
+6.cn.bestsign.delta.ms.signflow.service.IContractService#queryContractIdsByDescribeField
+ center ent-srv template 无调用
+
+7.cn.bestsign.delta.ms.signflow.service.IContractService#queryExpiredApiContractByMonth
+ center ent-srv template 无调用
+
+
+8. cn.bestsign.delta.ms.signflow.service.IContractService#queryCompleteContractsByTemplateId
+    center ent-srv template 无调用
+
+9. cn.bestsign.delta.ms.signflow.service.IContractService# hasContractsFromSpecialTemplate
+  可删除

@@ -1,0 +1,51 @@
+2021/11/17 - 2021/11/26
+
+1.SAAS-19492 多云接口预发环境回归 p0
+
+
+2.SAAS-19288  纸质签署APP 优先级 p2
+
+
+3.SAAS-19618 纸质签署完成后的合同丢章  问题修改 优先级p1
+
+4.log告警 降低不重要的业务日志级别 P2
+
+
+
+1.本地库
+
+2.Dubbo
+
+
+
+delte( long contractId, 2)
+
+-2
+
+
+roballk( long contractId, int a)
+
+
++2
+
+curl '10.128.46.62:9090/fix/verifysignature/2923792910489301001' \
+  -H 'Connection: keep-alive' \
+  -H 'sec-ch-ua: "Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"' \
+  -H 'Accept: */*' \
+  -H 'X-Requested-With: XMLHttpRequest' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://boss.in.bestsign.tech/static/iframe/page/main.html' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: experimentation_subject_id=IjYwZWEzNWUxLWI0OWQtNDZkMy05MTMwLWQ0YTNmMTYwNmFjNSI%3D--b3d23915cb98a83d6e935c0196d9849dcea2290f; JSESSIONID=J_LDOzvNTckLt21rT6Tjjx8K24SktVj8ejszl-iz' \
+  --compressed \
+  --insecure
+
+curl '127.0.0.1:9090/fix/verifysignature/2923792910489301001' \
+  -H 'Cookie: experimentation_subject_id=IjYwZWEzNWUxLWI0OWQtNDZkMy05MTMwLWQ0YTNmMTYwNmFjNSI%3D--b3d23915cb98a83d6e935c0196d9849dcea2290f; JSESSIONID=I3dNpMH-VDr8dtCm_-w27c2PQLrs0iC_6vsKSXS0' \
+  --compressed \
+  --insecure

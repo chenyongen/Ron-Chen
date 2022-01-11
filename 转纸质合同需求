@@ -1,0 +1,118 @@
+- 模板配置 3
+  - 在场景定制中开启，转纸质合同 功能 2
+    - 并填写纸质合同邮寄的地址
+    - 要求签署人是否必须上传PDF
+  - 开启当前功能（转纸质合同功能）的模板发出的合同上允许开启上传纸质合同的标记 1
+- 签约配置
+  - 签约过程中如果发现合同允许上传纸质合同，则表示 2
+  - 客户选择纸质合同签署 6
+    - 展示纸质合同签署流程说明
+    - 确认使用纸质合同签署，签署结束 6
+      - 【详情页】详情页展示已经使用纸质合同签署 1
+      - 【合同列表】业务字段中添加一个使用纸质合同签署 2
+      - 结束签约流程，检查合同完成逻辑 3
+
+- 批量签署和自动签署过滤掉纸质合同1
+
+- 合同详情页
+  - 表示使用纸质合同签署 1
+
+- 合同管理
+  - 添加一个业务字段，表示参与人使用了纸质签署 1
+
+
+
+
+1. 【模板设置】场景定制  开启关闭转纸质合同接口
+
+2.[更多] 放出转纸质合同接口
+  - 场景定制开启转纸质合同
+  - AC1 已实名的签署方企业不能 看见"转纸质合同"入口
+  - AC2 个人用户看不到"转纸质合同" 入口
+
+  - AC4 主动或被动进入 纸质弹窗 ,自动填充场景定制内"转纸质"的信息
+  - AC5 个人用户加入企业后 并且企业未实名则可以看到入口
+
+
+3.是否直接跳转到转纸质合同页面
+  - AC3 已经有签署方使用了"纸质",剩下的签署方，不管什么情况都弹出"纸质"引导弹窗
+
+4.确认纸质签署合同，完成合同签署状态
+  - AC7 看模板场景定制 有没有勾选上传扫描件 决定完成签署的时候是否要上传
+  - AC8 指定经办人，无需上传 扫描件
+
+5.下载合同
+    - AC6 下载合同的时候，合同状态未完成的时候，给提示
+
+6.合同详情
+  - 收件方 盖章 实名 展示-[改用纸质合同签署]
+  - 合同关联  关联上传扫描的合同 允许替换
+    允许手动上传
+
+7.合同管理
+ -前提 有合同模版开启了"转纸质"
+ -搜索条件 更多里面添加 系统设置-纸质
+
+8 合同证书
+展示证书序列号改为提示 【改用纸质】
+
+
+/**** 接口设计 ****/
+1.场景定制
+
+[
+  {
+    "sceneType": "AUTO_SIGN",
+    "optionType": "ONLY_INNER_ENT",
+    "optionValues": null,
+    "alternativeOptions": {
+      "BY_ROLE": [
+        "11"
+      ]
+    }
+  },
+  {
+    "sceneType": "HIDE_REFUSE_SIGN",
+    "optionType": "HIDE",
+    "optionValues": null,
+    "alternativeOptions": null
+  },
+  {
+
+    "sceneType": "PAPER_SIGN",
+    "optionType": "OPEN"/"null",
+    "optionValues": null,
+    "alternativeOptions": {
+      "maillingAddress": ["华星世纪大楼"],
+      "maillingReceiverName": ["刘德华"],
+      "maillingReceiverPhone":["13211001100"]
+    }
+  }
+]
+
+
+1.存储合同信息的中间表 （包括关联的扫描件信息）
+
+  待认领
+
+2.下载文件的问题
+
+3.操作日志是否需要
+
+4.审批流
+
+5.每次签署 调通知
+
+6.拒绝签署
+
+
+
+/api/contracts/outer-import
+
+
+https://ent.bestsign.info/contract-api/outer-import/files-upload?enterpriseId=1912938321084940292&folderId=&importSequenceNumber=
+
+https://ent.bestsign.info/contract-api/outer-import/confirm/2902874226925216776?enterpriseId=1912938321084940292&folderId=&_t=1634798186972
+
+签署接口
+contract-api/contracts/2902885819822090242/confirm

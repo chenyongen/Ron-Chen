@@ -1,0 +1,55 @@
+开发者编号
+
+1622518124017662886
+
+混合云3 1622518124017662886
+
+合同编号
+2950654080051094537
+documentId
+2950654080411804678
+
+
+
+sign contract 2950654080051094537
+海信  entId 2463658522156474375
+
+合同编号   2949082567481007110
+开发者编号 1574849570014230069
+
+
+2949083512910683136
+
+labelId
+2949082570391854084
+混合云3 1574849570014230069
+
+userId = 2336714838882913286 于研
+
+
+receiverId 2949082570106641408
+
+
+合同编号
+2949082648640788480
+
+labelid = 2949082652465993728
+"/contract-api/contracts/2949082567481007110/signature/2949082570391854084"
+
+
+
+
+"/contract-api/contracts/2949082648640788480/signature/2949082652465993728"
+Parameters: bestsign(String), 2950654080051094537(String)
+./wclient-http-consumer.2021-12-26-12.1.log.2021-12-26-2021_12_26_12_59_02.gz:2021-12-26 12:45:52.129 wtracer[w_security_enc.20211226124549_10.253.53.130_345728_44665239 2 4.29.-6473164695038339076 5.1.-569493330734813715] Request[{"body":"{\"templateId\":\"2832712977617026049\",\"placeHolders\":[{\"ifProxyClaimer\":false,\"userName\":\"王旭晨\",\"userAccount\":\"17622910149\",\"contractTitle\":\"违纪/违约确认书1\",\"textLabels\":[{\"name\":\"员工编号/ID1\",\"value\":\"11147237\"},{\"name\":\"责任人姓名/违约方姓名1\",\"value\":\"王旭晨\"},{\"name\":\"部门1\",\"value\":\"格调中心店\"},{\"name\":\"职务/服务类别1\",\"value\":\"店经理\"},{\"name\":\"违纪日期1\",\"value\":\"2021-11-05 00:00\"},{\"name\":\"店名1\",\"value\":\"格调中心店\"},{\"name\":\"事情经过1\",\"value\":\"同意\"},{\"name\":\"调查过程1\",\"value\":\"同意\"},{\"name\":\"沟通记录1\",\"value\":\"同意\"},{\"name\":\"违纪等级/违约等级1\",\"value\":\"考勤违规\"},{\"name\":\"违纪内容/违约内容1\",\"value\":\"\"},{\"name\":\"损失金额1\",\"value\":\"2\"}],\"idNumberForVerify\":\"120104199208147351\",\"signDeadline\":\"1899734399927\",\"customContractId\":\"1000087689\",\"bizNo\":\"52db9e2a-3488-478d-89aa-151ef24d516f\"}],\"hideRejectButton\":true,\"docGroupIds\":[\"2835380919714455554\"]}","url":"http://esign-api.vip.blibee.com/api/templates/send-contracts-sync","params":[],"headers":{"Authorization":["bearer f47eb1f8-24c7-4654-85ac-0ed9ac9b557f"],"W-Container-Type":["docker"],"bestsign-sign-timestamp":["1640493949976"],"bestsign-signature-type":["RSA256"],"bestsign-client-id":["1622518124017662886"],"WApp-Token":["idcfSQWtpA6C9HPRCd+o4VkFXhmPIABaYowFZ92kJ0ah2Mo+PYv3BYURydUTu+Mfxk/3xFMdIQ1hEQQ/qLHUhb0KD/YZ1hhrwrfyuDE8qD08jNkyeuLFgwDOZNhEQi/ooL1IxY1YGfgiBM7rW5i6jGJl7lXhnBxLA1aFIoNQf1w="],"bestsign-signature":["NK7e6aFUyTH8eIh4mCqXKo7x4EqBcQdn1McVofD373F977Zf5I0FkZFKTZiWexwoYc%2BmlGATE7m194pZ%2FqHsa9%2FC8lBUNFLUTfeNyTLQmYL6tVToUO73daeuqXBImppAHRK%2FklmJ05m1NtvdUvy80H%2FgAdlVIacwXZnva7roQ%2FlWpRCr7lxzH0kX59G7JggxaQiGTX7LH1tOcs2%2BqImQA1ql8saZFzwnZLPzyKNkiHFWmBCdSzncKpRiCsW9D6CTOZAffKZ4M9rDtNmFBWfiNBOmdb3a7ktcu6d8yNZp8CjxV%2B6cUmZJcwFESFfmKohuFt8gRWfxCSx7OB2JmBVsEQ%3D%3D"],"Accept-Encoding":["gzip","deflate"],"WApp-Name":["gis_esign_core"],"WT-ctx":["{\"traceId\":\"w_security_enc.20211226124549_10.253.53.130_345728_44665239\",\"flags\":2,\"invokeDetailFlags\":2,\"parentSpanId\":\"5.1.-569493330734813715\",\"spanId\":\"6.14.3318427215559135604\",\"name\":\"/api/templates/send-contracts-sync\",\"attachments\":{\"wsso_operator_info_key\":\"{\\\"uid\\\":\\\"xin.liu22\\\",\\\"cnName\\\":\\\"刘欣\\\",\\\"shopId\\\":0,\\\"mobilePhone\\\":\\\"166oImS1406\\\",\\\"employeeId\\\":\\\"11125128\\\",\\\"status\\\":0}\",\"wsso_login_info_key\":\"{\\\"ip\\\":1873221829,\\\"deviceId\\\":\\\"aad070c8-cf62-3d07-ab4a-ee3b57eefbf4\\\"}\"}}"],"WApp-New-Token":["FFPxntaHntt2mnBlj4f3xk7AxJ5X2pbP26LXzmJAu+SGOgkA+Emb/73ZpxzjhgJK48YEXvKGp4Mzq6oL3i/W1T/Q2QOvp5bfKQE6HEZkCEmji81IVtTQIB/L1zNhooecsyg1oMrV+MX80iSMLzk6l/jp/hKY2G/wa1EU+r32MpF9H5zEGwdZSnAJrHsV563G9o5p+2PoyiFO3TkFBL6kbwtdvrksTZQYBLarl7PFdWmdjit4wzTLaopNf0E9IjyqEB9ggOEGeCYESJzHkNekbA4RlhvVR8mxZTg/Xs7fPmbSesOZdGspdiCUFazq0LVhTlDmLaELjdHOjvFZ6z7SVg=="],"Content-Type":["application/json;charset=UTF-8"]},"cookies":[],"method":"POST"}] start[2021-12-26 12:45:49.978] end[2021-12-26 12:45:52.129] elapsed[2151] [DONE] Response[{"code":"0","message":"请求成功","data":{"contracts":[{"contractId":"2950654080051094537","receivers":[{"receiverId":"2950654082441847817","userAccount":"17622910149","userType":"PERSON","userName":"王旭晨","enterpriseName":"","receiverType":"SIGNER","operateUrl":"https://api.bestsign.cn/oauth/certification/sign?contractId=2950654080051094537&clientId=1622518124017662886&accessToken=","shortOperateUrl":"https://ent.bestsign.cn/s/MvRN7eia","userId":"2807813817357041665","enterpriseId":"0","errorMessage":null,"devAccountIds":null,"proxyClaimerAccounts":[],"ifProxyClaimer":false}],"bizNo":"52db9e2a-3488-478d-89aa-151ef24d516f"}]}}]
+
+
+
+
+
+
+正常合同
+2951467794765487108
+"/contract-api/contracts/2951467794765487108"
+
+2021-12-26 12:45:52.128 |-INFO  100256 in cn.bestsign.ultimate.hybrid.gateway.intercepter.LogUserActionAop[XNIO-1 task-29] :  bestsignUser=null requestURI=/api/templates/send-contracts-sync httpMethod=POST methodName=syncCreateContract errorMsg=null requestIp=10.245.6.195 userAgent=AHC/2.0 referer=null params=[{"sender":null,"templateId":2832712977617026049,"defaultConfig":null,"roles":null,"placeHolders":[{"contractId":null,"userAccount":"17622910149","userName":"王旭晨","enterpriseName":null,"contractTitle":"违纪/违约确认书1","contractLifeEnd":null,"customContractId":"1000087689","consumerDefinedUserId":null,"notification":null,"signDeadline":"1899734399927","idNumberForVerify":"120104199208147351","textLabels":[{"name":"员工编号/ID1","value":"11147237","saveLocation":null},{"name":"责任人姓名/违约方姓名1","value":"王旭晨","saveLocation":null},{"name":"部门1","value":"格调中心店","saveLocation":null},{"name":"职务/服务类别1","value":"店经理","saveLocation":null},{"name":"违纪日期1","value":"2021-11-05 00:00","saveLocation":null},{"name":"店名1","value":"格调中心店","saveLocation":null},{"name":"事情经过1","value":"同意","saveLocation":null},{"name":"调查过程1","value":"同意","saveLocation":null},{"name":"沟通记录1","value":"同意","saveLocation":null},{"name":"违纪等级/违约等级1","value":"考勤违规","saveLocation":null},{"name":"违纪内容/违约内容1","value":"","saveLocation":null},{"name":"损失金额1","value":"2","saveLocation":null}],"imageLabels":null,"describeFields":null,"contractFiles":null,"devAccountIds":null,"proxyClaimerAccounts":null,"ifProxyClaimer":false,"bizNo":"52db9e2a-3488-478d-89aa-151ef24d516f","uniqueKey":"17622910149null"}],"userSessionInfo":null,"attachments":null,"contractType":null,"documentIds":null,"docGroupIds":[2835380919714455554],"returnUrl":null,"pushUrl":null,"hideRejectButton":true,"approvalFlowName":null},"BodyReaderHttpServletRequestWrapper","ResponseWrapper"] result={"contracts":[{"contractId":"2950654080051094537","receivers":[{"receiverId":"2950654082441847817","userAccount":"17622910149","userType":"PERSON","userName":"王旭晨","enterpriseName":"","receiverType":"SIGNER","operateUrl":"https://api.bestsign.cn/oauth/certification/sign?contractId=2950654080051094537&clientId=1622518124017662886&accessToken=","shortOperateUrl":"https://ent.bestsign.cn/s/MvRN7eia","userId":"2807813817357041665","enterpriseId":"0","errorMessage":null,"devAccountIds":null,"proxyClaimerAccounts":[],"ifProxyClaimer":false}],"bizNo":"52db9e2a-3488-478d-89aa-151ef24d516f"}]} cost=2146

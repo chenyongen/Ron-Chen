@@ -1,0 +1,84 @@
+/contract-api/contracts/2942755887867278341/confirm
+
+
+- cnfirm 确认签署 合并图片
+
+- 自动签署过滤掉 有这个必填图片的
+
+- api 层面过滤掉合同有这个必填图片的
+
+
+
+- 【新增】签署时候上传图片填充接口
+
+- 保存接口
+rick7062@163.com
+
+
+18267909521
+
+PmsPackageConfigDTO openedConfig = pms2ConfigService.getOpenedConfig(entIds.get(0), GROUP_DEPLOY.getId());
+
+
+
+cn.bestsign.delta.aggregation.contract.logic.contract.signlabel.SignLabelLogic#signCompose
+
+
+
+
+http://ent-helm.bestsign.info:32225/home?isPwdLogin=null
+
+
+
+cn.bestsign.delta.ms.signflow.service.IContractWarningExclusion:1.0
+
+/contracts/2947716827851275265/labels/2947716844058065921/seal-all 更换印章
+
+https://ent2-k8s.bestsign.tech/contract-api/contracts/2947716827851275265/documents?receiver=2947716843647024136&showLabels=1&permission=&_=1640163792000
+
+
+curl 'https://ent2-k8s.bestsign.tech/contract-api/contracts/2947716827851275265/auto-sign' \
+  -X 'POST' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 0' \
+  -H 'Pragma: no-cache' \
+  -H 'Cache-Control: no-cache' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Authorization: bearer f64504c4-ef98-4cdc-8388-e4cdd689eddc' \
+  -H 'request-source: WEB' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'Origin: https://ent2-k8s.bestsign.tech' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://ent2-k8s.bestsign.tech/sign/signing?contractId=2947716827851275265&entId=2272327961166251017&entName=%E8%B5%B7%E8%8D%89%E6%B5%8B%E8%AF%95' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: experimentation_subject_id=IjYwZWEzNWUxLWI0OWQtNDZkMy05MTMwLWQ0YTNmMTYwNmFjNSI%3D--b3d23915cb98a83d6e935c0196d9849dcea2290f; language=zh; copyRightRange=2014-2021; login-sms=1640143724276; boxAutoSend=false; browser_fingerprint=f3a2847855980a922652dd81bcccad9a; access_token=f64504c4-ef98-4cdc-8388-e4cdd689eddc; refresh_token=f540ebde-990b-47d9-a603-0f58fdbe5863; JSESSIONID=a84ssQ3hWBMYsYuO_6ANIIbDJlmqaE5dK3dwamYq' \
+  --compressed
+
+
+
+
+
+
+  curl 'http://localhost:8091/contract-api/contracts/2947017061270043651/documents?receiver=2947017071470590978&showLabels=1&permission=false&_=1640228101000' \
+  -H 'Connection: keep-alive' \
+  -H 'Pragma: no-cache' \
+  -H 'Cache-Control: no-cache' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Authorization: bearer 3df7173c-5264-48dc-b29a-fffb9b3577d7' \
+  -H 'request-source: WEB' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: http://localhost:9000/sign/signing?contractId=2947017061270043651&entId=0&entName=18206970171' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: language=zh; copyRightRange=2014-2021; boxAutoSend=false; browser_fingerprint=9af1effc697df1132b56b6aead6b0fb4; access_token=3df7173c-5264-48dc-b29a-fffb9b3577d7; refresh_token=db736f7b-dc07-41f1-95b5-84d98cb8839e; JSESSIONID=ctOQtn0g2SNjb42zRybO6Nf14U3T4w3xcvyEJi16' \
+  --compressed

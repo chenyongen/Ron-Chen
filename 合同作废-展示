@@ -1,0 +1,18 @@
+* SAAS-17512 【合同作废】合同上传验签，显示已经作废
+
+* SAAS-17511 【合同作废】合同列表-补充列表查询状态
+   delta-contract-cnenter 内搜索功能
+    - search-contracts/search 接口
+      参数内 字段 contractStateNames list传参数 需要前端新加一个类型（已作废）
+      -> V3SearchParam(filter)
+      -> ContractSearcher
+
+* SAAS-17508 【合同作废】合同详情页-合同关联
+
+* SAAS-17509 【合同作废】合同查验码-展示合同作废
+
+
+delta-contract-center-bearing 项目原来链接的是contract-center库 现在把标签 文件夹 业务字段表拆出了独立的库直接是TiDB
+目前我已经把apollo上的配置切换成了对应的开发库， 也把代码合并到了dev分支  如果大家contract-center 和 delta-contract-center-bearing 项目部署有配置报错
+请merge一下我的代码分支  release-SAAS-17807 到自己的分支
+因为这个拆库需要一刀切，所以还没上线就需要这么操作开发环境。 请知悉～

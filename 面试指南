@@ -1,0 +1,60 @@
+java基础
+
+hashmap 结构 1.7 和1.8的不同
+
+sychronized 关键字  锁如何升级
+
+RTreendLock 原理  公平锁 和非公平 自旋锁的条件
+
+线程池的原理
+
+
+创建线程池注意事项
+
+
+
+spring  ioc 循环依赖
+
+
+aop 原理  应用场景  多个切面作用如何生效
+
+
+事务传递  多线程事务怎么生效
+
+分布式锁
+有哪几种
+怎么续命
+
+
+
+分布式事务怎么保证一致性
+
+数据库 索引的 回表查询 查询数据页
+索引失效
+索引是不是越多越好
+层高
+
+
+
+
+
+ssh-keygen -t ed25519 -C "chenye_ttc@163.com"
+
+代码风格
+
+领域驱动设计
+
+消息中间件 怎么保证消息不重复消费
+
+dubbo SPI和Java SPI的区别
+dubbo重试引起的问题
+dubbo服务发现机制 失效如何踢出 注册中心挂了 消费者端有没有影响
+
+怎么引用本地的bean 不走注册中心
+
+
+
+SHA256:E3RNkzbsiM+LC2upYnWlHr/Z8CgVbzoqb3keqjvKeos chenye_ttc@163.com
+The key's randomart image is:
+
+单测怎么写

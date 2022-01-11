@@ -1,0 +1,98 @@
+本地部署环境
+
+* 第一步 安装home brew
+  - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  - 安装后运行brew --version
+
+      Homebrew 3.2.11
+    Homebrew/homebrew-core (no Git repository)
+    Homebrew/homebrew-cask (git revision 75003ab5a2; last commit 2021-09-10)
+
+
+    出现以上错误 则运行
+
+    git -C $(brew --repository homebrew/core) checkout master
+
+* 第二步安装kubectl
+
+  - brew install kubectl 执行此命令进入下载界面
+
+* 第三步安装helm
+  - brew install helm
+
+* 第四步配置k8s文件  ~/.kube/config 放入config文件
+  - 第一步 下载 https://wiki.bestsign.tech/download/attachments/45878020/config-hw-sh2-devqa?version=1&modificationDate=1619602675000&api=v2
+  - 第二步没有 ~/.kube 需要创建该目录 mkdir
+  - 下载第一步的文件后 记得重命名为config 放入到~/.kube内
+  - 验证下是否能正常访问到开发环境的k8s集群
+
+    kubectl cluster-info
+    kubectl get no
+    helm ls -n default
+* 第五步在k8s集群创建一个命名空间(建议以自己的名字的拼音命名，如果公司内有拼音相同的同事，以数字后缀区分开，如depu1、depu2)
+  - 执行命令 kubectl create ns ron（替换成自己的名字）
+
+* 第六步通过git拉取公司gitlab的helm-delta-dev项目，进入根目录进行校验打包操作
+  - #下载公司的项目helm-delta-dev
+    git clone https://git.bestsign.tech/delta/helm-delta-dev.git
+  -  # 进入根目录
+    cd helm-delta-dev
+  -  # 校验helm包是否有语法错误
+    helm lint .
+  - # 构建tgz包
+    helm package .
+
+  - 打开helm-delta-dev文件，配置自己的文件配置
+    开发环境，使用NodePort方式（不同LoadBalanced方式）向集群外暴露地址，因此需要将vueWeb服务的service.nodePort参数设置为一个别人未占用的端口（取值范围：30000～32767）（这一点很重要！！！），建议在项目根目录下的 bestsign/ 下用文件夹名称(格式为<端口号>-<拼音名称>)声明出哪个端口是你独占的，这样可以减少大家端口冲突的概率。
+    然后在前一步的目录底下创建一个values.yaml模版文件的副本（假设为values-depu.yaml），进行一些配置更改
+    # 全局替换 depu 关键字（区分大小写，且为word）为自己的名字的拼音
+
+    # 修改vueWeb服务的 service.nodePort的值为你之前文件夹名称声明的独占端口
+
+    # 记得修改这两个键的端口号
+    # ？？？测试域名白名单
+      ent.brand.white.list = 0.0.0.0,ent-helm.bestsign.info:30001
+      # ？？？
+      classify.host = {"ent":["ent.bestsign.info","ccb.bestsign.info","openapi.bestsign.info","ent-helm.bestsign.info:30001"],"api":["api.bestsign.info"]}
+
+
+
+    # 记得把namespace换成自己的，不要部署到别人的命名空间去了
+
+        kubectl get ns 查看已有ns
+        helm install helm-delta-dev --values=<values-ron.yam文件的绝对路径> helm-delta-dev-0.1.0.tgz -n ron --debug
+
+        helm install helm-delta-dev --values=/Users/ronchen/Proj/helm-delta-dev/bestsign/30007-ron/values-ronChen.yaml helm-delta-dev-0.1.0.tgz -n ron --debug
+        示例
+        # 查看所有pod是否运行正常
+        kubectl get po -n depu
+        # 查看所有微服务的service
+        kubectl get svc -n depu
+        # 查看具体某个pod的运行细节或日志，定位问题
+        kubectl describe po <pod-name> -n depu
+        kubectl logs -f <pod-name> -n depu
+        # 进入某个pod的container中查看细节（前提是pod是running状态）
+        kubectl exec -it <pod-name> /bin/bash -n depu
+
+         # 部署分之 请参考
+            zipFilePattern: delta-fe-converge_master_.*.zip
+            修改为       zipFilePattern: delta-fe-converge_dev_.*.zip 则是部署dev分支
+
+
+        # helm-delta-dev
+        10.128.57.166 ent-helm.bestsign.info
+        10.128.61.191 ent-helm.bestsign.info
+        10.128.62.22 ent-helm.bestsign.info
+        # 公司官网
+        10.128.57.166 www-helm.bestsign.info
+        # boss入口地址
+        10.128.62.22 boss-helm.bestsign.info
+        配置这些到/etc/hosts内
+
+        ent-helm.bestsign.info:30007
+        saas旗舰版  http://ent-helm.bestsign.info:30007/
+
+        公司官网    http://www-helm.bestsign.info:30007/
+
+        boss    http://boss-helm.bestsign.info:30007/

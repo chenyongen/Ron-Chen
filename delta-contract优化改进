@@ -1,0 +1,12 @@
+1.通知代码需要重构
+
+2.单测覆盖不够
+  每个迭代划分一些去覆盖
+
+
+3.无用代码删除掉
+
+4.接口整理 被调用场景梳理
+
+
+mvn -f "pom.xml" versions:set -DoldVersion=4.72.0-RELEASE -DnewVersion=4.72.1-RELEASE -DprocessAllModules=true -DallowSnapshots=true -DgenerateBackupPoms=false
