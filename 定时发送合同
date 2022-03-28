@@ -1,0 +1,131 @@
+
+1.获取是否展示定时发送配置
+  - 根据乐高城配置展示
+
+2.发送定时发送合同
+  - 保存合同定时配置
+  - 创建定时合同，合同状态为审批中
+    - 审批流加入定时节点
+
+3.定时任务扫描定时配置审批合同
+  - 扫描合同定时配置表
+  - 查找定时合同聚合信息
+  - 根据当前时间审批定时节点
+  - 审批流结束，修改合同为发送中状态
+
+
+
+
+
+
+------
+支持混3
+
+
+1.复用/draft/send 接口
+
+
+
+
+
+
+
+
+
+-----
+case：
+ 1.没有审批流的时候的定时
+ 2.定时时间设置错误
+
+ 建表语句
+
+
+
+
+
+
+ CREATE TABLE `timing_contract_config` (
+ `id` bigint(19) unsigned NOT NULL COMMENT '主键',
+ `contract_id` bigint(19) unsigned DEFAULT '0' COMMENT '合同ID',
+ `contract_title` varchar(200) COMMENT '合同标题',
+ `contract_status` tinyint(4) unsigned DEFAULT 10  COMMENT '合同状态',
+ `contract_send_time` datetime  COMMENT '合同发送前时间',
+ `received_time` datetime  COMMENT '签署人收到定时时间',
+ `data_create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '数据创建时间',
+ `data_update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据修改时间',
+  PRIMARY KEY (`id`), KEY `idx_timing_contract_config_contract_id_status` (`contract_id`,`contract_status`) );
+
+
+  curl 'https://ent5-pre-hwy.bestsign.info/contract-api/timing-contract/2993566130632661001?_t=1645613929060' \
+    -H 'Connection: keep-alive' \
+    -H 'Pragma: no-cache' \
+    -H 'Cache-Control: no-cache' \
+    -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"' \
+    -H 'Accept: application/json, text/plain, */*' \
+    -H 'Authorization: bearer 2486a996-e1ed-4cce-be24-46a8a959d1f7' \
+    -H 'sec-ch-ua-mobile: ?0' \
+    -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36' \
+    -H 'sec-ch-ua-platform: "macOS"' \
+    -H 'Sec-Fetch-Site: same-origin' \
+    -H 'Sec-Fetch-Mode: cors' \
+    -H 'Sec-Fetch-Dest: empty' \
+    -H 'Referer: https://ent5-pre-hwy.bestsign.info/sign-flow/doc-manage/detail/2993566130632661001' \
+    -H 'Accept-Language: zh-CN,zh;q=0.9' \
+    -H 'Cookie: _jwfxuvpc=1640929649435%7C1270852622119978248%7C1%7C1640929649442%7C1%7C%7C9227033242997967697; _ga=GA1.2.107870230.1640929650; language=zh; copyRightRange=2014-2022; browser_fingerprint=9bc96f6305bed9f3496ba5b6891382f3; login-sms=1645601204824; access_token=2486a996-e1ed-4cce-be24-46a8a959d1f7; refresh_token=919ba02a-26de-4fc3-96f8-9bab7e0a71de; JSESSIONID=dOewAhbdlt3yU1Qct1K7APEIoxZpXn1t3xJOVgay' \
+    --compressed
+
+
+curl 'https://ent2-hwy.bestsign.info/contract-api/timing-contract/2995071396670934024?_t=1645788967480' \
+  -H 'Connection: keep-alive' \
+  -H 'Pragma: no-cache' \
+  -H 'Cache-Control: no-cache' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Authorization: bearer 62f14a3c-2bc3-4787-9eba-ec7893f51f53' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://ent2-hwy.bestsign.info/sign-flow/doc-manage/detail/2995071396670934024' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Cookie: language=zh; login-psd=1640245381554; _jwfxuvpc=1640929649435%7C1270852622119978248%7C1%7C1640929649442%7C1%7C%7C9227033242997967697; _ga=GA1.2.107870230.1640929650; copyRightRange=2014-2022; browser_fingerprint=9bc96f6305bed9f3496ba5b6891382f3; login-sms=1645788884673; access_token=62f14a3c-2bc3-4787-9eba-ec7893f51f53; refresh_token=2d417ad8-f4eb-4e91-a084-f488692850ee; JSESSIONID=1G3oaigFdNqoYC_0VrQZH1p_NQKlxPf1EqD8Oh16' \
+  --compressed
+
+
+contractId
+2994238774629636102
+receiverId
+2994238786717620233
+------档案柜子---
+2992832511035316230
+
+--contractId
+2993494288043612169
+draft_id
+2993494075140741121
+
+
+-----
+drftId
+2992932361215154177
+
+2992948403748476932
+
+
+hhy2-001@b.cn
+
+public String findSenderApproveCondition(Long defInfoId, Long enterpriseId) {
+    List<QueryDefineConditionDTO> defineConditionDTOS = defVisibleConditionService.getAllDefCondition(enterpriseId, defInfoId);
+    String condition = ApproveConditionType.SENDER_APPROVE_BEFORE_SEND.getMean();
+
+    for (QueryDefineConditionDTO conditionDTO : defineConditionDTOS) {
+        if (Objects.equals(conditionDTO.getConditionType(), ApproveConditionType.SENDER_APPROVE_BEFORE_SEND.getApprover()) &&
+                Objects.equals(conditionDTO.getConditionValue(), ApproveConditionType.SENDER_APPROVE_BEFORE_SIGNING.getSignCondition())) {
+            condition = ApproveConditionType.SENDER_APPROVE_BEFORE_SIGNING.getMean();
+        }
+    }
+
+    return condition;
+}

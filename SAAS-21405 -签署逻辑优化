@@ -1,0 +1,24 @@
+/contracts/api/seal-and-sign
+
+
+/contracts/cross-page-seal-sign
+
+
+- 检查是否有印章，是否有骑缝章，是否有装饰骑缝章
+    - 至少有一个条件符合
+- 获取用户对应的印章列表
+    - 必须有一个印章
+- 是否存在指定印章
+    - 如果存在选择指定的印章
+    - 如果不存在指定印章，选择默认印章
+        - 如果没有默认印章，报错
+    - 是否存在模板专用章
+- 填充印章
+    - 填充装饰骑缝章
+    - 填充印章信息
+
+
+
+
+
+java -Dsun.misc.URLClassPath.disableJarChecking=true -Dfile.encoding=UTF-8 -jar hybrid-cloud3-fix-tool.jar --spring.config.location=./application.properties

@@ -2,24 +2,37 @@ java基础
 
 hashmap 结构 1.7 和1.8的不同
 
+
+
+
+
 sychronized 关键字  锁如何升级
+
 
 RTreendLock 原理  公平锁 和非公平 自旋锁的条件
 
 线程池的原理
 
-
 创建线程池注意事项
-
-
-
 spring  ioc 循环依赖
 
 
-aop 原理  应用场景  多个切面作用如何生效
+
+dubbo Ioc 加载Bean 和spring加载的有什么不同
+
+spring 怎么把dubbo的配置信息加载进去的   启动事件
+
+
+aop 原理  应用场景
+多个切面作用如何生效
+
 
 
 事务传递  多线程事务怎么生效
+
+事务借助Threalocal存了一个JDBCConnection 来打理当前线程事务
+
+
 
 分布式锁
 有哪几种
@@ -33,6 +46,22 @@ aop 原理  应用场景  多个切面作用如何生效
 索引失效
 索引是不是越多越好
 层高
+怎么优化复杂sql
+explain
+id 代表什么信息  优先级如何判断
+possible_keys 一定会被用到吗 不一定的
+查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+key列显示MySQL实际决定使用的键（索引）
+
+
+消息队列
+怎么确保消息被送达 ack机制 确保消息不丢失
+
+怎么避免消息重复消费 幂等性校验
+ 以及消费时候出现异常了怎么办 (rabbitmq是有异常自动重试机制)
+
+延迟队列 定时发送
+比如说 我想设置一个 明天早上八点能收到的消息
 
 
 
@@ -50,11 +79,10 @@ dubbo SPI和Java SPI的区别
 dubbo重试引起的问题
 dubbo服务发现机制 失效如何踢出 注册中心挂了 消费者端有没有影响
 
-怎么引用本地的bean 不走注册中心
-
-
-
+怎么引用本地的bean  不走注册中心
 SHA256:E3RNkzbsiM+LC2upYnWlHr/Z8CgVbzoqb3keqjvKeos chenye_ttc@163.com
 The key's randomart image is:
-
 单测怎么写
+
+1912938321084940292
+9521@b.cn

@@ -1,0 +1,43 @@
+子合同数据修正
+contract_document_ent_folder_relationship
+id, dic_id, contract_id, document_id, enterprise_id, delete_flag
+
+
+
+
+contract_document_describe_field_relationship
+id, contract_id, document_id, field_name, field_value, field_order, field_id, enterprise_id
+
+
+1.把contract_document_describe_field_relationship这个数据写入的地方写到contract_document_ent_folder_relationship
+  ,读取上面两张表的时候看看有没有风险,需要刷历史数据contract_document_describe_field_relationship contractTypeId 写入到contract_document_ent_folder_relationship
+
+2.contract_ent_folder_relationship 有数据重复的问题  多条的用最新的 写接口解决
+
+contract_document_describe_field_relationship 也有重复数据 3条 手动sql解决
+
+3.contract_describe_field_relationship 双写contract_ent_folder_relationship 内 也要刷历史数据
+
+
+
+
+
+
+原则: 存在则更新，不存在则插入
+
+子合同
+插入 更新
+cn.bestsign.delta.ms.signflow.dao.mysql.ContractDocumentDescribeFieldRelationshipEntityMapper#batchInsert
+
+cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#setConfirmationDescribeFieldsAfterComplete
+
+
+
+这个方法内需要补充
+
+
+
+父合同
+cn.bestsign.delta.ms.signflow.dao.mysql.ContractDescribeFieldRelationshipEntityMapper#insert
+
+update 操作也需要同步
