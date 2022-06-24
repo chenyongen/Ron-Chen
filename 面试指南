@@ -63,6 +63,9 @@ key列显示MySQL实际决定使用的键（索引）
 延迟队列 定时发送
 比如说 我想设置一个 明天早上八点能收到的消息
 
+ES 索引倒排
+数据预热
+怎么解决ES和数据的实时性问题
 
 
 
@@ -70,19 +73,53 @@ key列显示MySQL实际决定使用的键（索引）
 ssh-keygen -t ed25519 -C "chenye_ttc@163.com"
 
 代码风格
+代码重构
 
 领域驱动设计
 
 消息中间件 怎么保证消息不重复消费
 
-dubbo SPI和Java SPI的区别
-dubbo重试引起的问题
-dubbo服务发现机制 失效如何踢出 注册中心挂了 消费者端有没有影响
+
 
 怎么引用本地的bean  不走注册中心
-SHA256:E3RNkzbsiM+LC2upYnWlHr/Z8CgVbzoqb3keqjvKeos chenye_ttc@163.com
-The key's randomart image is:
 单测怎么写
 
-1912938321084940292
-9521@b.cn
+分布式事务 怎么保证一致性
+TCC回滚失败怎么办
+
+防止刷单
+怎么解决超卖的问题
+乐观锁 ｜入队列串行化处理 多个商品需要创建多个队列
+
+redis进行扣减 可能由于缓存不一致 导致少卖
+
+
+迁移数据
+工作流
+
+
+
+检索接口性能提升
+定时任务优化做了什么处理  单机场景 并不能解决 有什么在分布式场景下运行
+
+索引优化
+分布式id 怎么生成 为什么不用自增的id
+
+dubbo SPI和Java SPI的区别
+dubbo重试引起的问题
+dubbo服务发现机制 失效如何踢出
+注册中心挂了 消费者端有没有影响
+
+先路由还是先负载均衡
+
+git 命令
+
+定时任务
+报表
+业务网关
+
+
+
+*/2 * * * *  python /root/pyScritpt/auto.py
+*/5 * * * *  python /root/pyScritpt/auto_zaiding.py
+*/5 * * * *  python /root/pyScritpt/auto_haier.py

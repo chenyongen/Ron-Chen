@@ -1,3 +1,6 @@
+
+hebing bfcb839c5a0b9e567da81ca03e1b50345137fee1
+merge之前的commit
 1、提供API驳回重签功能：
 
 入参:
@@ -23,6 +26,7 @@
   - 状态驳回重签状态中是不能再次被驳回
   - 所有签署字段都被驳回
     - signLast 逻辑目前只支持签名(印章, 个人签名)
+    - 骑缝章
     - 如果文本也要支持驳回的话 合成逻辑需要大改？
     - 预览图还是需要合并上这些标签
   - 重新签署必须在原记录上覆盖
@@ -37,3 +41,100 @@
   - 改动核心签署接口合成合同部分
   - 法律风险，多方签署的时候，如果发送方驳回了一方，但是另一方已经签署了 ，万一被驳回的一方居心不良，调整了关键标签的内容，比如说金额 或者说工期之类的
     另一方签署人感知不到，该怎么办？
+
+- 合同日志新增加类型[驳回重签]
+- 生成存证页逻辑中新加驳回重签逻辑
+
+https://work.weixin.qq.com/webapp/tm/peJxQuwiO2l
+
+
+
+3024843036711495686
+4124839135329296390
+
+15655161832
+
+  - 签署人标签合成线上逻辑不管SignLast都是先合并到PDF上，最后再根据Signlast合印章标签，签名标签
+  - 如果合同具有驳回重签署标识,则在签名合成时把所有的签署人填写内容改成WAIT_COMPOSE状态，当最后一个
+    签署人签署的时候再合成所有内容
+  - 预览图风险，预览图需要把所有WAIT_COMPOSE状态的也合并上去
+
+  待确认问题：
+    1、顺序签超过2个人是否能支持
+    a: 由于更改下一个签署人找的是未开始的,如果驳回的是第一个人， 第二个人状态不会影响， 这个场景应该是支持的
+    2、驳回重签时业务字段有设置默认值是否展示
+    a: 标签默认值如果有就恢复成默认值， 场景应该是支持的
+    3、集中部署
+    a: 集中部署场景这次API先不考虑, 等web版本的时候再做，由企服提供接口
+
+
+  /receivers/current-operating 签约须知 privateLetter
+
+
+
+{"autoSignContractInTurn":false,"contractPayer":false,"definedInTemplate":true,"idNumber":"","ifProxyClaimer":false,"inputEnterpriseName":"世纪佳缘限公司","inputUserName":"","mustReadBeforeSign":false,"needNotice":true,"newAttachmentRequired":false,"noticeInEnglish":false,"proxyClaimerAccounts":[],"templateRoleId":3028346290120425473,"viewedLetter":false}
+
+{"dropLabelOperator":"SENDER","entUserName":"","faceFirst":false,"faceVerify":false,"forceHandWrite":false,"handWriteNotAllowed":false,"handWritingRecognition":false,"messageAndFaceVerify":false,"multiEmployeeSignaturesVerifyConfig":{"employeeRealNameAuthConfigList":[],"multiEmployeeSignaturesCount":1,"useMultiEmployeeSignatures":false},"requireEnterIdentityAssurance":false,"requireIdentityAssurance":true}
+
+
+  合同有驳回标识
+
+  签署的时候 如果关闭了乐高城配置 那签署是走原来逻辑 还是新的逻辑
+
+ 1.第1个人如果签署的时候，走的新逻辑
+ 2.乐高城关了走老逻辑就出问题了， 合成就合成不了了
+
+hybrid3-test@b.cn
+
+ssqtest020@b.cn
+
+12012345644 个人 账号
+
+13958164759 个人唐海琼
+bestsign-cross-client-id=1639622042016569617
+
+
+cn.bestsign.delta.aggregation.contract.web.rest.DocumentController#getDocumentsAction 生成签署页面图片信息
+
+cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#composeDecorateRidingSignAtSAAS 合并骑缝章
+
+
+
+  cn.bestsign.delta.ms.signflow.service.ICreateTemplateContractService#setCreateDraftId  设置draftId
+
+  cn.bestsign.delta.ms.signflow.service.ICreateTemplateContractService#sendTemplateContract 发送合同
+
+  /**
+   * 发送平台 1：WEB；2：APP；3：API；4：WPS；5：INVITATION 6：WPS Online；7：ENT_CREATE; 8: SANDBOX; 9: WAP; 10: ANDROID; 11: IOS
+   */
+  sendPlatform API 发送 3 非API发送的 不能驳回
+
+
+cn.bestsign.delta.ms.template.domain.dto.contract.TemplateToContractDTO 中增加属性 能否驳回重签
+
+
+ResultCustomFieldsContentDTO result = createTemplateContractService.sendTemplateContract(templateToContractDTO);
+
+
+mvn -f "pom.xml" versions:set -DoldVersion=4.85.7-RELEASE -DnewVersion=4.85.71-RELEASE -DprocessAllModules=true -DallowSnapshots=true -DgenerateBackupPoms=false
+
+
+
+
+
+2022-04-24 10:47:43:154:INFO com.bestsign.utils.AuthDecTool.getSaasApiHeaders(AuthDecTool.java:195) - {Authorization=ccee9278-1445-4934-be77-d403e52ed4bd, Content-type=application/json, bestsign-sign-timestamp=1650768463053, bestsign-signature-type=RSA256, bestsign-client-id=1553226889016597097, bestsign-signature=ECAXO4P5QgYpBVneoIvopPzP59OnR32bmlyFSZlQoufDPOTNSVPCxEmKLX5yAh66Vs2F7G4x3fs%2B5fNm8nSAIbCM64X2TsqsTkyQVGZtKPf5m1qYYcg30HHuDmfXFnvVfJajcSxilBkfyjyex4RYHzaCU2wSrXhJFd2BxNBImZs594EaQ1sf0ft8wtBsOV9R2iDL%2B5TV3eNiSQl01zS9r6BTtMEZtGYxVN7YN1DRqk3uvMz56n%2FDJ2l3VE1fo8U8iJUqPMv3MqukvFLbvbmYQFC0VG83XPiFu8uWyhkr%2FyiGWftS0Cy107Fdeo4RoBYjwaF0sGDTyA6SfizmDKdglw%3D%3D}
+
+三种场景
+- 代理签署
+  新增了一个签署人
+  标签转让给代理签署人
+- 申请用印
+  新增一个执行印章签署人
+  印章标签转让给执行签署人
+- 询证函盖章
+  两个印章选了一个
+  这种情况好处理
+
+比较难处理的场景是代理签署和申请用印的驳回，API驳回是全量驳回的，那这个时候意味着签署标签要归还， 新增的代理签署人或者用印关系的执行人也要删除
+恢复到最开始的状态，还是保持现有的申请用印关系，代理签署关系？
+Web版本如果勾选了代理的人签署标签 或者是 用印申请的 逻辑又该怎么处理 这个时候是以签署标签为纬度的 这种难做到全量的

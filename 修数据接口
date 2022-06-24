@@ -1,0 +1,55 @@
+package cn.bestsign.delta.v5.gateway.rest.sub.contract;
+
+
+import cn.bestsign.delta.aggregation.contract.web.ResultVO;
+import cn.bestsign.delta.v5.domain.support.fix.tools.application.FixContractTypeApplicationService;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/contract-api")
+public class FixContractTypeController {
+    private final FixContractTypeApplicationService fixContractTypeApplicationService;
+
+
+
+    @ApiOperation("删除父合同重复合同类型数据")
+    @GetMapping("/fix-contract-type/parent-contract")
+    public ResultVO deleteParentDuplicateContractType(@RequestParam("beginId") Long beginId,
+                                                      @RequestParam("endId") Long endId){
+        fixContractTypeApplicationService.distinctParentContractType(beginId, endId);
+        return ResultVO.ok("success");
+    }
+
+
+    @ApiOperation("同步父合同重复合同类型数据")
+    @GetMapping("/fix-contract-type/sync/parent-contract")
+    public ResultVO syncParentDuplicateContractType(@RequestParam("beginId") Long beginId,
+                                                      @RequestParam("endId") Long endId){
+        fixContractTypeApplicationService.syncParentContractTypeData(beginId, endId);
+        return ResultVO.ok("success");
+    }
+
+    @ApiOperation("删除子合同重复合同类型数据")
+    @GetMapping("/fix-contract-type/sub-contract")
+    public ResultVO deleteSubDuplicateContractType(){
+        fixContractTypeApplicationService.distinctSubContractType();
+        return ResultVO.ok("success");
+    }
+
+
+    @ApiOperation("同步子合同重复合同类型数据")
+    @GetMapping("/fix-contract-type/sync/sub-contract")
+    public ResultVO syncSubContractContractType(@Param("beginId") Long beginId, @Param("endId") Long endId){
+        fixContractTypeApplicationService.syncSubContractTypeData(beginId, endId);
+        return ResultVO.ok("success");
+    }
+
+
+}

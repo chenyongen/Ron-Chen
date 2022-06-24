@@ -1,0 +1,35 @@
+1.删除子合同 contract_document_ent_folder_relationship 重复数据
+
+    - contract_document_ent_folder_relationship 内同一个document_id 有重复数据会导致同步时报错
+    - 利用如下SQL 找出包含重复数据的子合同 document_id
+      select document_id from
+      contract_document_ent_folder_relationship
+      where id >0
+      and 9793832750434485248 >id
+      group by  contract_id, document_id having count(1) >1
+      order by document_id asc
+
+     找出重复的document_id  进行删除 保留最新的那一条数据
+
+
+
+
+2. 从 contract_document_describe_field_relationship表内
+   读取field_name 为 contractTypeId 的数据
+   得到这数据后，利用document_id
+  - 从contract_document_ent_folder_relationship 表内读取  同一 document_id 有没有数据， 有则更新，没有则插入
+
+
+
+3. 删除父合同重复数据 清除contract_ent_folder_relationship
+    - contract_ent_folder_relationship 内同一个document_id 有重复数据会导致同步时报错
+    - 利用如下SQL 找出包含重复数据的子合同 document_id
+      select contract_id from
+      contract_ent_folder_relationship
+      where id between #{beginId} and #{endId}
+      group by contract_id having count(1)>1
+      找出重复的contract_id  进行删除 保留最新的那一条数据
+
+4. 读取contract_describe_field_relationship
+   读取field_name 为 contractTypeId 的数据
+  - 判断contract_ent_folder_relationship 同一 document_id 有没有数据， 有则更新，没有则插入
