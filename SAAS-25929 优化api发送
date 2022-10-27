@@ -1,0 +1,66 @@
+CREATE TABLE `contract_api_send_record` (
+  `id` bigint(19) unsigned NOT NULL COMMENT '主键',
+  `unique_request_id` varchar(50) COMMENT '请求编号',
+  `contract_id` bigint(19) unsigned DEFAULT '0' COMMENT '合同编号',
+  `developer_id` bigint(19) unsigned DEFAULT '0' COMMENT '开发者编号',
+  `data_create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '数据创建时间',
+  `data_update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据修改时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_unique_request_id_developer_id_contract_id` (`unique_request_id`,
+  `developer_id`,`contract_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+headmsg(Authorization)#@access_token｜
+headmsg(bestsign-request-id)#12345|
+
+
+headmsg(Authorization)#@access_token|headmsg(bestsign-request-id)#12345|{    "templateId":"3100169372669677572"}
+
+
+
+{\"templateId\":3100169372669677572}
+
+
+headmsg(Authorization)#@accessToken|headmsg(bestsign-request-id)#12345|{"templateId":"3100169372669677572
+
+
+面向外部的和面向内部的都会有，形式会以部署架构图，和业务架构图的形式展示
+1.面向内部的我们主要体现调用关系
+2.面向外部的我们主要体现安全合规性，底层容错能力，所用的技术
+
+
+
+
+https://ent3-hwy.bestsign.info/template-api/bizfield/content/edit-bizfield?isNewGroup=true
+
+
+1.RS服务选在delta-contract-support 或者新建一个服务
+2.RS结果存储在DB MySQL内,建表sql如下
+
+CREATE TABLE `request_result_record` (
+`id` bigint(19) unsigned NOT NULL COMMENT '主键',
+`unique_request_id` varchar(50) DEFAULT NULL COMMENT '请求编号',
+`contract_id` bigint(19) unsigned DEFAULT '0' COMMENT '合同编号',
+`developer_id` bigint(19) unsigned DEFAULT '0' COMMENT '开发者编号',
+`data_create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '数据创建时间',
+`data_update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据修改时间',
+PRIMARY KEY (`id`),
+KEY `idx_unique_request_id_developer_id_contract_id` (`unique_request_id`,`developer_id`,`contract_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+3.数据期限目前是3天，得有定时任务去删除
+
+4.为了防止我们系统出问题情况下，导致客户请求不了，boss上得有一个接口能主动删除这条记录，先不对客户暴露
+
+
+
+
+
+
+
+
+Hi all, 明天下午四点我们会在银河系对196迭代进行任务点数评估与承接，
+大家在明天下午3点之前记得把点数评估做完。这次的任务量比较多，鉴于我们组的容量
+任务分配会做一些取舍。 @所有人

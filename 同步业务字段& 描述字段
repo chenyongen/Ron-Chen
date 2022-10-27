@@ -1,0 +1,72 @@
+业务字段
+/bizfield/content/query
+
+
+manager_biz_field
+
+    CONTENT("CONTENT"),
+描述字段
+/bizfield/describe/query
+
+manager_biz_field
+
+ DESCRIPTION("DESCRIPTION");
+
+
+模版业务字段 开启了场景定制 -规范业务字段
+
+temp_biz_field
+
+
+
+
+开启了模版规范业务字段
+该模版不做更新
+
+企业控制台内
+
+
+
+
+下拉框121
+3073245713715796997
+
+
+合同描述字段 AAB
+3074633284437678086
+
+
+
+curl 'https://ent3-hwy.bestsign.info/template-api/templates/sync-manager-field/3074633284437678086' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Authorization: bearer 4dbaa872-ba98-4f0e-a928-40d70ff8b878' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Cookie: _ga=GA1.2.107870230.1640929650; Qs_lvt_435733=1647483170; Qs_pv_435733=866244074409359100; _jwfxuvpc=1640929649435%7C1270852622119978248%7C2%7C1647483170434%7C2%7C9227033242997967697%7C1440041788837117842; __utma=110928662.107870230.1640929650.1647483172.1647483172.1; __utmz=110928662.1647483172.1.1.utmcsr=openapi.bestsign.info|utmccn=(referral)|utmcmd=referral|utmcct=/; language=zh; copyRightRange=2014-2022; login-sms=1655704300380; access_token=4dbaa872-ba98-4f0e-a928-40d70ff8b878; refresh_token=5aeb2a5c-f016-4ae6-8b6f-b14a7b236159; browser_fingerprint=d60fece7078c63ee68558094527fcf41; JSESSIONID=_PtQVWr61WjYFZxjzoZVZznEIfgSu-aw8pXZlgPK' \
+  -H 'Origin: https://ent3-hwy.bestsign.info' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://ent3-hwy.bestsign.info/sign-flow/template/list' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --data-raw '{}' \
+  --compressed
+
+
+
+  // 比较两个分支, 会展示在test中不在master中的提交
+$ tig test..master
+// 展示多个分支的提交
+$ tig test master
+// 查看指定日期提交
+$ tig --after='2022-06-10' --before='2022-07-20'
+// 查看某个文件的提交
+$ tig FILE
+// 查看某个文件的更改信息
+$ tig blame -- FILE

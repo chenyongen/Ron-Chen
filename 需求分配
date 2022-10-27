@@ -5,3 +5,18 @@ SAAS-23296 【BUG修复】发送给企业，接收方的“使用其他账号签
 SAAS-22856 【新增】支持FDA特殊签名 3 协助一组
 
 CFD-11222 百事签署合同提示审批未完成，暂不能签署
+
+
+
+//用户当前激活的企业
+ List<EnterpriseDTO> enterpriseDTOS = enterpriseService.listActiveEnterpriseByUserId(userId);
+ List<Long> activeEntIdList = enterpriseDTOS.stream().map(EnterpriseDTO::getEntId).collect(toList());
+
+ return activeEntIdList.contains(entId) ||  contractPermissionLogic.hasGroupManagerAuth(account, entId)
+
+
+
+ 1.外部客户可能会询问我们的部署架构，请求之间的路由关系，安全合规性， 引用的第三方服务（例如人脸扫面供应商，PFD支持供应商，签名证书等）
+ 2.可以例如Jason所说的，客户关心我们多云架构，研发部可以把多云架构部署图展现出来
+ 3.大家看看之前客户有没有这方面的要求，我这边收集一下，尽量往客户诉求上去靠
+ 4.如果客户诉求比较少，我们会按照随大流的图例去画
