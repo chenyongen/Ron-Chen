@@ -1,0 +1,30 @@
+
+
+这上面还有撤销
+延期
+提醒
+更新合同到期
+是最开始的 1000为批次的处理任务的方式，这种只要触发了Ratlimit的限流 ，后面就会全部失败
+
+
+我们全量操作合同问题很多，具体表现在
+1.批量执行卡住问题，导致客户感知不到，
+2.通知问题，因为改成了走MQ单个消费的形式，会导致短信轰炸，这个问题得解决
+3.上报问题，center那边依赖contract的上报，现在只要结果不对，就直接让contract这边看，
+  能不能center那边也增加点上报记录日志
+
+
+https://jira.bestsign.tech/browse/CFD-16151 通知问题
+  暂定，需要找产品确定全量逻辑下，通知怎么处理
+
+https://jira.bestsign.tech/browse/CFD-16143 （批量新逻辑，但是业务没有细测，这个无法避免）
+  属于正常业务bug
+
+https://jira.bestsign.tech/browse/CFD-16142 原有的架构不合理导致的
+
+  https://jira.bestsign.tech/browse/SAAS-31639  跟踪解决
+
+https://jira.bestsign.tech/browse/CFD-16139 ，
+审计日志不明确，属于是我们产品规格的问题，但是排查起来很浪费时间，前线和研发同事要翻看很多文档
+
+建议研发自己维护一个文档，记录全量操作的规格。

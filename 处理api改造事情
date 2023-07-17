@@ -1,0 +1,14 @@
+/contract-api/papersign/info/${contractId} 有问题的
+
+
+从封装上 貌似都没问题 主要是拦截处理的问题
+
+
+/contract-api/contracts/{contractId} 没问题的
+
+
+cn.bestsign.delta.aggregation.contract.web.api.filter.HttpResponseFilter
+因为zhanghao 在21年五月份修改了拦截路径 导致v5包下面所有controller接口都有问题
+
+
+rest

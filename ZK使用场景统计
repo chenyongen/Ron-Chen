@@ -1,0 +1,68 @@
+  ZkDistributedLock zkDistributedLock = zkLocksCreator.createLock(lockKey);
+
+  1.tryHandleCompose   合成
+    cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#executeBizWithLock
+
+
+
+  2.extract-signers  对合同的签约方进行提取
+
+  cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#extractSignersInfoFromDocuments
+
+
+  3.合同过期
+  cn.bestsign.delta.aggregation.contract.task.DelayQueueTask#overdueContractTask
+
+
+  4. wxlogic 获取token
+  cn.bestsign.delta.aggregation.contract.logic.notice.WxLogic#getAccessToken
+
+
+
+  5.代签人领取合同
+  cn.bestsign.delta.aggregation.contract.logic.contract.receiver.ReceiverLogic#addProxySignReceiver
+
+  6.企业自动签
+  cn.bestsign.delta.v5.infrastructure.impl.core.biz.schedule.auto.sign.acl.AutoSignContractClient#keepSignContractUnique
+
+
+  7.添加合同比对记录
+  cn.bestsign.delta.aggregation.contract.logic.contractCompare.ContractCompareLogic#addCompareRecord
+
+
+
+  8.获取Wx getAccessToken
+  cn.bestsign.delta.aggregation.contract.logic.notice.WxLogic#getWxAccessToken
+
+
+  9.指定证书延期
+
+  cn.bestsign.delta.aggregation.contract.logic.sign.SignHashLogic#delayCaCert
+
+
+  10.
+  cn.bestsign.delta.aggregation.contract.web.rest.DocumentController#createDocumentAction
+
+
+  11.替换文档
+  cn.bestsign.delta.aggregation.contract.web.rest.DocumentController#replaceDocumentAction
+
+
+  12.上传多个图片转换成一个PDF
+  cn.bestsign.delta.aggregation.contract.web.rest.DocumentController#genDocumentFromImages
+
+
+
+  13.cn.bestsign.delta.aggregation.contract.web.rest.netsuite.NetSuiteController#createContractFromDocuments
+
+
+  14.选择用印、申请用印等操作- - 自动填充默认章
+  cn.bestsign.delta.aggregation.contract.web.rest.signlabel.SignLabelSignController#sealAll
+
+
+
+  15.询证函盖章
+  cn.bestsign.delta.aggregation.contract.web.rest.signlabel.SignLabelSignController#confirmationRequestSeal
+
+  16.更改签署人图片
+  cn.bestsign.delta.v5.domain.core.biz.sign.flow.signer.sign.modifysign.application.ModifySignAppService#signerModifyPictureSignLabel

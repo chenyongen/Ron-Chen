@@ -1,0 +1,36 @@
+根本原因
+confirm/pre 阶段没有检验印章权限
+
+在
+confirm/post阶段
+
+校验了印章权限
+
+
+
+cn.bestsign.delta.aggregation.contract.logic.ent.EnterpriseLogic#sealOwnAuthCheck(cn.bestsign.delta.ms.signflow.domain.dto.user.OperateInfo, java.util.List<java.lang.Long>)
+
+
+
+为了把逻辑抽取到一块
+最好是单独抽取个服务去检验
+
+
+
+List<SignLabelDTO> receiverSignLabels = signLabelLogic
+        .queryLabelsByReceiverId(contract.getContractId(), signingReceiver.getReceiverId());
+
+
+List<SignLabelDTO> sealLabels = receiverSignLabels.stream()
+           .filter(signLabel -> signLabel.getStatus() == SignFlowConstants.SignLabelStatus.CONFIRMED
+                   && (signLabel.getType() == SignFlowConstants.SignLabelType.SEAL
+                   || signLabel.getType() == SignFlowConstants.SignLabelType.RIDING_SEAL
+                   || signLabel.getType() == SignFlowConstants.SignLabelType.CONFIRMATION_REQUEST_SEAL)
+           ).collect(Collectors.toList());
+
+
+
+ List<Long> sealIdList = sealLabels.stream()
+              .filter(it -> StringUtils.isNotBlank(it.getSignatureId()))
+              .map(it -> Long.valueOf(it.getSignatureId()))
+              .collect(Collectors.toList());

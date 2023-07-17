@@ -1,0 +1,51 @@
+公有云：
+  contract dubbo接口
+
+
+混合云：
+   同一个dubbo接口， batchtask
+
+
+-------问题
+
+1.同步，一个一个执行
+
+  签署虽然走的异步，但是会等结果返回，效果上还是同步的
+
+
+2.改成异步， 丢消息 BATCH_OPERATION_SIGN
+
+
+
+
+
+
+多云 消息队列如何投递
+
+3.结果怎么用
+
+
+
+批量  -> 10000份  -> 分两个云调dubbo接口 -> 单云一个个去投递 （消息限流）
+
+
+
+
+结果 -> 回调接口去查询（已经有了） 查询
+
+
+cn.bestsign.delta.ms.signflow.service.IBatchOperationContractService#signContractForBatchOperation
+
+
+
+混合云3 是直接走dubbo接口回调 告知结果
+cn.bestsign.delta.contract.center.adapter.gateway.dubbo.api.IContractBatchDubboService#updateBatchOperateDetail
+
+公有云的 需要进行投递 消息
+QUEUE_FULL_CONTRACTS_OPERATION
+再去回调
+
+
+1.新建dubbo接口，支持多云，分批量进行调用
+2.对dubbo接口内的传参，进行单个合同的消息投递，新建消息队列，新建BATCH_OPERATION_SIGN 对这个队列进行限流
+3.公有云回调接口走QUEUE_FULL_CONTRACTS_OPERATION 消息投递，通过消费此消息向平台上报结果

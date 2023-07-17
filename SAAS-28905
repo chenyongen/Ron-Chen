@@ -1,0 +1,32 @@
+
+
+批量下载：
+
+
+现在调用 export fullGC
+
+实现单个下载：
+相当于合同列表页下载功能
+
+新逻辑：
+把待合成的标签合上去
+
+fileId
+子合同编号
+文件类型（合同，附件，存正页面）
+
+
+contract_id, document_id, file_id,contract_status
+
+
+{
+
+filieId:
+
+documentId:
+
+contractId:
+
+fileType:
+
+}

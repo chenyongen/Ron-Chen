@@ -1,0 +1,81 @@
+- Long类型处理器 done
+
+- 人员接口异常 done
+
+- 审批实例附件表(建表)
+  - 审批实际例编号
+  - varchar(256) url
+    - 1对多
+
+
+财务审批 -
+
+fileIdList 附件上传
+
+
+审批模版
+
+
+
+
+
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `finace_approval_instance_content`;
+CREATE TABLE `finace_approval_instance_content`(
+  `instance_id`  bigint(19) unsigned NOT NULL COMMENT '审批实例编号',
+  `staff_id` bigint(19) unsigned NOT NULL COMMENT '所属用户编号',
+  `staff_name` varchar(64) DEFAULT '' COMMENT '所属用户名称',
+  `tenant_id` bigint(19) unsigned NOT NULL COMMENT '所属于企业编号',
+  `tenant_name` varchar(64) NOT NULL COMMENT '租户名称',
+  `finace_amount`  bigint(19) unsigned NOT NULL COMMENT '审批金额，单位 分',
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
+  `create_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
+  `update_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `delete_flag` tinyint(1) unsigned DEFAULT '0' COMMENT '删除标记（0:未删除，1:已删除）',
+  PRIMARY KEY (`instance_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='财务审批内容表';
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+最早提前一小时  8-12 13点之前
+
+  2-6 当天有就行
+
+
+- clockDay
+  -clockDayItem
+
+    - 上午 （上午第一次，上午第二次）正常
+    - 下午
+
+- 日数据 不考虑请假
+  是否工作日
+  打卡时间
+  T+1
+  - 管理员 走pc
+  - 普通员工 走h5
+
+
+
+- 月数据
+  考勤正常
+  2023-06-01 考勤异常   查当月请假记录 日期字符串 为何异常？请假记录  - 跳转请假详情
+
+- 考勤校准（不要)
+
+- 优先级低一点
+//  查看某个人的假期余额列表 （快）
+//  查看某个人的某个假期使用记录 （慢）
+
+
+
+
+
+--------------------------------------------
+
+  - 创建考勤组

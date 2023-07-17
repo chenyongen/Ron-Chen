@@ -1,0 +1,53 @@
+curl 'localhost:8082/goku-tender/approval-instance/h5/basic-list?pageNum=1&pageSize=10' \
+  -H 'authority: tender.wkongcloud.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijk2ZTk3MzNkLTM0YzktNDA5YS1iNzNmLTQyNTU4YzBjNjBjZCJ9.5q-6SuUZyAHGiX_M_7AoAxhrL9znfAY8WXAnMkZholzHDz4_f8PSruPDEvtCQk7XPlqlZvF5g1MnXQhM_Z3ytQ' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json;charset=UTF-8' \
+  -H 'cookie: rememberMe=true; username=test; password=V1c4wm1PQHRO2OQ6w1m128pXsXR1MUiVUG89hMJt6xt6QfP/IXHHNxngknRuA2a3ZNpnAtOtM2WWgOMyc/Hzug==; Admin-Token=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6Ijk2ZTk3MzNkLTM0YzktNDA5YS1iNzNmLTQyNTU4YzBjNjBjZCJ9.5q-6SuUZyAHGiX_M_7AoAxhrL9znfAY8WXAnMkZholzHDz4_f8PSruPDEvtCQk7XPlqlZvF5g1MnXQhM_Z3ytQ' \
+  -H 'origin: https://tender.wkongcloud.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://tender.wkongcloud.com/pc/clock/check/my' \
+  -H 'sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36' \
+  --data-raw '{"joinApprovalInstanceType":"WAIT_ME_APPROVAL_INSTANCE"}' \
+  --compressed
+
+
+
+  mvn -f "pom.xml" versions:set -DoldVersion=4.88.63-RELEASE -DnewVersion=SAAS-34699-SNAPSHOT -DprocessAllModules=true -DallowSnapshots=true -DgenerateBackupPoms=false
+
+  假期使用记录 调整记录逻辑待验证
+
+
+
+  Error:(38, 30) java: Ambiguous mapping methods found for mapping property "LocalDateTime updateAt" to Date: Timestamp localDateTimeToTimeStamp(LocalDateTime localDateTime), Date localDateTimeToDateTime(LocalDateTime localDateTime). See https://mapstruct.org/faq/#ambiguous for more info.
+
+<a href="#none" clstag="shangpin|keycount|product|yanse-深邃蓝四格1.6L【配筷勺+汤碗】MCFT532">
+            <img data-img="1" src="//img14.360buyimg.com/n9/s40x40_jfs/t1/91032/23/21651/90500/64a5b2faF2a46b836/11d03fdd6a8d23e4.jpg" width="40" height="40" alt="深邃蓝四格1.6L【配筷勺+汤碗】MCFT532"><i>深邃蓝四格1.6L【配筷勺+汤碗】MCFT532</i>
+        </a>
+
+
+  curl 'localhost:8082/goku-tender/approval-instance/detail/1676827337808674816' \
+  -H 'authority: tender.wkongcloud.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: zh-CN,zh;q=0.9' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjBiNjE0MTcxLWI2ODYtNGEyNC1iZDk0LWYxOWQ4ZWRmN2U3YSJ9.yM7ijcrnrIh-Q-Zdo4J-4Z4S4UC01Ic6X4qMZQLDYjonk6d04tLOb07wTzLdEV4OlQ4GxN5uU9JUbEAeMoOP7w' \
+  -H 'cache-control: no-cache' \
+  -H 'cookie: rememberMe=true; username=test; password=JtwV7jE7kltVIyka3PJzdNEIJ+huYoiJS9OGKkKsrLCDIIpIVYcDsRXusP3Clizr2lM4AUXcuM1SX75Hg59ERA==; Admin-Token=eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjBiNjE0MTcxLWI2ODYtNGEyNC1iZDk0LWYxOWQ4ZWRmN2U3YSJ9.yM7ijcrnrIh-Q-Zdo4J-4Z4S4UC01Ic6X4qMZQLDYjonk6d04tLOb07wTzLdEV4OlQ4GxN5uU9JUbEAeMoOP7w' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://tender.wkongcloud.com/pc/clock/check/record' \
+  -H 'sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36' \
+  --compressed

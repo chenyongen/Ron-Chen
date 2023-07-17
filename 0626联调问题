@@ -1,0 +1,62 @@
+编辑考勤组的时候，展示人员看不到人名
+
+考勤组展示得修改一下 因为新加了字段
+
+
+创建审批实例 参数 fileIdList-> fileUrlList
+
+天数 后端返回的*10了 前端看一下是不是要处理一下 --- 后端处理
+
+
+假期初始化的时候 页面按钮 ，展示的是停用 应该展示启用 没看见启用按钮
+
+假期余额列表的展示问题
+
+-----审批------
+创建审批模版的时候
+
+{approvalTemplateName: "2023年假审批模版", approvalTemplateType: 0, templateSubId: "1673243639725162496",…}
+approvalTemplateName
+:
+"2023年假审批模版"
+{
+  "approvalTemplateName": "2023年假审批模版",
+  "approvalTemplateType": 0,
+  "templateSubId": "1673243639725162496",
+  "stepList": [
+    {
+      "staffId": "1",
+      "staffName": "goku",
+      "tenantId": "20230131001",
+      "tenantName": null,
+      "deptId": "103",
+      "deptName": "测试部门",
+      "clockStatus": 0,
+      "label": "goku",
+      "value": "1",
+      "disabled": false,
+      "orderNumber": 0
+    },
+    {
+      "staffId": "118",
+      "staffName": "test",
+      "tenantId": "20230131001",
+      "tenantName": null,
+      "deptId": "100",
+      "deptName": "测试部门",
+      "clockStatus": 0,
+      "label": "test",
+      "value": "118",
+      "disabled": false,
+      "orderNumber": 1
+    }
+  ]
+}
+
+tenantName 前端传了空值
+
+
+编辑模版时候人员也是空的
+
+创建审批流的时候 复用的人员接口有问题
+复用了考勤组的

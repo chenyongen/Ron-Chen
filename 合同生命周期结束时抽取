@@ -1,0 +1,37 @@
+【任务要求】	1. 找出签约生命周期结束的代码位置（已完成，合同完成，发送审批未通过，取消（撤销））
+    - 列出函数位置到当前issue中
+    - 在对应的函数
+2. 编写一个函数，在步骤一整理的函数中执行进行调用
+    - 补充调用清理预览图的方法，作为这个函数的第一个方法
+
+    cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#handleContractCompete
+    cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#contractComplete(cn.bestsign.delta.ms.signflow.domain.dto.contract.ContractDTO, cn.bestsign.delta.ms.signflow.domain.dto.user.OperateInfo, boolean)
+    生成存正页
+
+- 合同完成
+// 印章OCR识别的通知
+sealOCRNoticeAppService.sendNoticeIfSignerSealNotMatchSenderRule(contractId, signingReceiver.getReceiverId());
+// 发送自动签消息
+employeeSignatureAutoSignAppService.asyncAutoSignContract(contractId);
+
+混3 同样逻辑
+
+- 发送审批未通过
+
+cn.bestsign.delta.aggregation.contract.logic.approval.ApprovalLogic#approveSendContract
+  - 未通过
+    1.退预扣
+    2.发送通知消息
+  - 全部通过
+    1.发通知
+    2.自动认领
+  - 下一个
+     1.通知
+
+- 合同撤销
+  cn.bestsign.delta.aggregation.contract.logic.contract.receiver.ReceiverSignLogic#breakContract
+  通知
+
+- 合同作废
+
+cn.bestsign.delta.aggregation.contract.logic.contract.ContractLogic#invalidContractIfNecessary

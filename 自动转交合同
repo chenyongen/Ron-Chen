@@ -1,0 +1,122 @@
+自动转交
+
+1.发送
+
+2.签署/拒绝签署
+
+3.审批
+
+4.补全
+
+
+
+配置对谁生效
+  - 配置是由模版创建者配置
+  - 得判断当前操作人 操作与场景定制时具体的操作选项（发送，签署，审批,补全）为同一个集团/企业
+
+cn.bestsign.delta.ms.ent.service.IEntGroupService#selectEntGroupByMemberEntId
+/**
+ * 根据entId查询所在群的信息
+ *
+ * @param entId
+ * @return
+ */
+EntGroupDTO selectEntGroupByMemberEntId(Long entId);
+
+
+
+
+    /**
+     * 获取集团群主企业
+     * @param entId
+     * @param isNewGroup
+     * @return
+     */
+    EnterpriseDTO getGroupAdminEnt(Long entId, String isNewGroup);
+
+    如果集团存在 拿集团的企业Id 去获取用户信息
+
+    不存在 则拿原来的持有人entid取获取
+
+    获取失败 说明不在同一个企业内 抛出异常
+
+
+    cn.bestsign.delta.ms.user.service.IUserInfoService#selectByAccount 根据账号获取用户信息
+
+    //refresh current receiver
+    oldReceiverEntity.setUserAccount(targetHolder.getUserAccount());
+    oldReceiverEntity.setUserId(targetHolder.getUserId());
+    oldReceiverEntity.setUserName(targetHolder.getUserName());
+    oldReceiverEntity.setEmployeeId(targetHolder.getEmployeeId());
+    oldReceiverEntity.setEmployeeName(targetHolder.getEmployeeName());
+
+
+String distributionNote = "移交(" + SignFlowConstants.ReceiverType.getDescription(oldReceiverEntity.getReceiverType()) + "角色)给" + targetHolder.getUserName();
+msContractEventLogic.addDistributionEvent(contractDTO.getContractId(), newReceiverId, distributionNote, oldReceiverEntity.getEnterpriseId(), sourceHolder, targetHolder, operateInfo);
+
+
+
+public Long addDistributorAndUpdateSignAging(SignFlowConstants.ContractStatus contractStatus, NewHolderUserInfo targetHolder, ContractReceiverEntity it) {
+    //backup source receiver and new one receiver as history receiver
+    ContractReceiverEntity newOneAsHistory = beanMapper.map(it, ContractReceiverEntity.class);
+    Long newReceiverId = idGeneratorConstant.getId(ContractReceiverEntity.class);
+    newOneAsHistory.setReceiverId(newReceiverId);
+    newOneAsHistory.setOriginReceiverId(it.getReceiverId());
+    newOneAsHistory.setSignStatus(SignStatus.COMPLETE.getByte());
+    newOneAsHistory.setInternalSignStatus(SignStatus.COMPLETE.getByte());
+    newOneAsHistory.setReceiverType(DISTRIBUTOR.getByte());
+    newOneAsHistory.setDocumentList("[]");
+    newOneAsHistory.setAddTime(new Date());
+
+    JSONObject jsonObject = JSON.parseObject(it.getExtendedAttribute());
+    //add extension to record changed fields
+    jsonObject.put("originContractStatus", contractStatus);
+    jsonObject.put("originReceiverType", ReceiverType.valueOf(it.getReceiverType()));
+    jsonObject.put("originSignStatus", SignStatus.valueOf(it.getSignStatus()));
+    jsonObject.put("originInternalSignStatus", SignStatus.valueOf(it.getInternalSignStatus()));
+    newOneAsHistory.setExtendedAttribute(jsonObject.toJSONString());
+    contractReceiverEntityMapper.insertSelective(newOneAsHistory);
+
+    //SAAS-25964:签署时效进行转移并更新合同接收时间
+    signedAgingAppService.transferSignedAgingAndAdjustReceiverTime(it.getReceiverId(), newReceiverId, it.getReceiveTime(),
+            it.getContractId());
+    return newReceiverId;
+}
+
+
+
+
+
+
+//合并多个参与角色的转交事件为一个
+public void addDistributionEvent(Long contractId,  Long distributorReceiverId,String distributionNote,Long enterpriseId,
+                                 NewHolderUserInfo sourceHolder,
+                                 NewHolderUserInfo targetHolder,
+                                 OperateInfo operateInfo) {
+
+    ContractEventEntity eventEntity = new ContractEventEntity();
+
+    eventEntity.setContractId(contractId);
+    eventEntity.setEnterpriseId(enterpriseId);
+    eventEntity.setReceiverId(distributorReceiverId);
+    eventEntity.setUserId(operateInfo.getUserId());
+    eventEntity.setUserDeveloperId(operateInfo.getDeveloperId());
+    // 转交都是内部事件
+    eventEntity.setEventGroup(SignFlowConstants.EventGroup.INNER_GROUP.getByte());
+    eventEntity.setEventTime(new Date());
+    eventEntity.setOperateType(SignFlowConstants.ContractOperateType.DISTRIBUTION.getByte());
+    eventEntity.setOperationIp(operateInfo.getUserIp());
+
+    EventInfo eventInfo = new EventInfo();
+    eventInfo.setDistributionNote(distributionNote);
+    eventInfo.setTakeContractUserId(targetHolder.getUserId());
+    eventInfo.setTakeContractUserName(targetHolder.getUserName());
+    eventInfo.setTakeContractUserAccount(targetHolder.getUserAccount());
+    eventInfo.setSourceContractUserId(sourceHolder.getUserId());
+    eventInfo.setSourceContractUserName(sourceHolder.getUserName());
+    eventInfo.setSourceContractUserAccount(sourceHolder.getUserAccount());
+
+    eventEntity.setEventInfo(JSON.toJSONString(eventInfo));
+
+    addContractEvent(eventEntity);
+}

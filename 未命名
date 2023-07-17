@@ -1,0 +1,27 @@
+<div style="width: 700px; margin: 0 auto 13px; font-size: 12px; font-family: 'Microsoft YaHei';">
+<div style="width: 690px; height: 58px; box-sizing: border-box; padding: 0 40px; background: #00aa64;"><img style="max-height: 38px; padding: 10px 0;" src="https://ent.bestsign.cn/public_static/img/bestsign-email-logo.png" alt="" /></div>
+<div style="border: 1px solid #ddd; width: 690px; background-color: #fcfcfc; box-sizing: border-box;">
+<div style="padding-left: 40px; padding-right: 40px;">
+<div style="text-align: center; margin-top: 10px;">${logo}</div>
+<div style="text-align: center; color: #3d3d3d; border-bottom: 1px solid #ddd; font-size: 14px; line-height: 55px; margin-top: 10px;"><strong>${cnContractAlias}被撤销-《${contractName}》</strong></div>
+<div style="text-indent: 2em; line-height: 22px;">
+<div style="margin-left: -2em; margin-top: 20px;">尊敬的<strong style="font-size: 14px;">${username}</strong> ：</div>
+<div>您好！</div>
+
+<div>${sendName}撤回了《${contractName}》，签署无法完成。可点击 ${detailUrl}查看</div>
+<div>如果您在使用过程中需要任何帮助，欢迎联系上上签客服。</div>
+<div>客服邮箱：<span style="text-decoration: underline;"><a href="mailto:support@bestsign.cn" style="text-decoration: none; color: #00aa64;">support@bestsign.cn</a></span></div>
+<div>客服热线：<span style="color: #00aa64;">400-993-6665</span></div>
+<div style="text-align: right;"><img src="https://www.bestsign.cn/imgers/tempsignssq.png" alt="" style="margin-bottom: 5px;" /><br /><span>BestSign，Any time，Any where，Any Device.</span></div>
+<div style="color: #b3b3b3; text-align: center; margin-top: 20px;">此为上上签系统邮件，请勿回复。请保管好您的邮箱，避免上上签账户被他人盗用。</div>
+</div>
+</div>
+<div style="border-top: 1px solid #f0f0f0; text-align: center; line-height: 43px;"><a href="https://ent.bestsign.cn" style="text-decoration: none;"><img src="https://www.bestsign.info/images/newIndexImg/usessqrightaway.png" alt="" style="margin-bottom: -5px;" /><span style="color: #00aa64; font-size: 14px; border-bottom: 1px solid #00aa64; padding-bottom: 2px;">立即使用上上签</span></a></div>
+<div style="background-color: #f0f0f0; padding: 30px 75px 10px; text-align: center;">
+<p style="color: #323232;">上上签，提供公正、安全、合法、有效的电子签约服务</p>
+<div style="border-bottom: 1px solid #d9d9d9; padding-top: 20px; padding-bottom: 20px; margin-bottom: 15px;"><img src="https://www.bestsign.cn/imgers/templogogroup.png" alt="" /></div>
+<p style="color: #999;">杭州尚尚签网络科技有限公司</p>
+<p style="color: #999; margin-top: -5px;">Copyright &amp;copy 2014-${date(),"yyyy"} BestSign 版权所有</p>
+</div>
+</div>
+</div>

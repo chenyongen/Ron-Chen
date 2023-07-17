@@ -33,3 +33,9 @@
 4. 读取contract_describe_field_relationship
    读取field_name 为 contractTypeId 的数据
   - 判断contract_ent_folder_relationship 同一 document_id 有没有数据， 有则更新，没有则插入
+
+
+
+在发送合同接口，Action为DRAFT的时候不校验文档参数，然后生成单点url链接又需要去校验，有必填的就不生成链接，
+总感觉这个逻辑很怪，那我们直接不用改不是更好。
+为啥生成draft的时候不校验，要在生成url的时候校验呢

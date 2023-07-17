@@ -1,0 +1,40 @@
+
+3282567018246617090
+
+
+ssqtest020@b.cn
+
+12012345633
+
+// CFD-11295:这里当sso单点登录，
+api生成draft的场景：追加的label没传pageHeight,
+后面合章会有问题，这里没有先用默认值
+
+
+
+SignLabelSizeDefinition.getSealDefaultSize().getRelativeWidth()
+
+
+
+cn.bestsign.delta.aggregation.contract.logic.contract.receiver.ReceiverLogic#tryMatchEmpAndEntForOnlyOneAccount
+
+
+
+setReceiverEntForProxyClaimer
+
+
+
+ifHasNoAccountAndEqualsSenderEnt
+的else下
+
+    List<DocumentImageDTO> documentImageDTOS = documentImageLogic.queryNormalDocumentImages(signComposeModel.getContractId());
+
+
+signLabelForCompose.setWidthInRatio(imageSize.getWidth(),
+                new ContractImageBO(documentImageDTOS).getPageWidth(signLabelForCompose.getDocumentId(), signLabelForCompose.getPageNumber()));
+signLabelForCompose.setHeightInRatio(imageSize.getHeight(),
+                new ContractImageBO(documentImageDTOS).getPageHeight(signLabelForCompose.getDocumentId(), signLabelForCompose.getPageNumber()));
+
+
+
+mvn -f "pom.xml" versions:set -DoldVersion=f-CFD-16373-SNAPSHOT -DnewVersion=1.0.15-RELEASE -DprocessAllModules=true -DallowSnapshots=true -DgenerateBackupPoms=false

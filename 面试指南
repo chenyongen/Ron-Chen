@@ -3,10 +3,9 @@ java基础
 hashmap 结构 1.7 和1.8的不同
 
 
-
-
-
 sychronized 关键字  锁如何升级
+
+
 
 
 RTreendLock 原理  公平锁 和非公平 自旋锁的条件
@@ -14,6 +13,7 @@ RTreendLock 原理  公平锁 和非公平 自旋锁的条件
 线程池的原理
 
 创建线程池注意事项
+
 spring  ioc 循环依赖
 
 
